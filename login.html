@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+	<title></title>
+
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="http://www.octavio.com.ar/favicon.ico">
+	<!-- <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"> -->
+<!-- 	<link rel="stylesheet" type="text/css" href="css/estilo.css">
+	<link rel="stylesheet" type="text/css" href="css/animacion.css"> -->
+	<!--final de Estilos-->    
+
+ 	<script SRC="bower_components/angular/angular.min.js" TYPE="text/javascript"></script>
+ 	<script type="text/javascript" src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
+ 	<script SRC="bower_components/angular-ui-router/release/angular-ui-router.min.js" TYPE="text/javascript"></script>
+ 	<script SRC="bower_components/satellizer/satellizer.min.js" TYPE="text/javascript"></script>
+ 	<script SRC="app.js" TYPE="text/javascript"></script>
+
+</head>
+
+
+
+<body ng-app="MyApp" ng-controller="LoginController">
+
+	<!-- views/login.html -->  
+	<form name="formIngreso" method="post">  
+	    <input type="email" ng-model="email"/>
+	    <input type="password" ng-model="password"/>
+	    <button type="submit" ng-click="Entrar()">Autenticarse</button>
+	</form>  
+
+</body>
+</html>

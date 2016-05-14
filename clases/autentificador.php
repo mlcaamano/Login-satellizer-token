@@ -6,24 +6,31 @@ include_once 'BeforeValidException.php';
 include_once 'SignatureInvalidException.php';
 
 
-$objDatos=json_decode(file_get_contents("php://input"));
+// $objDatos=json_decode(file_get_contents("php://input"));
 
-//$idUsuario=Usuario::ChequearUsuario($objDatos->usuario, $objDatos->clave); // devuelve id o flase si esta mal
 
-if($objDatos->usuario=="33@33" && $objDatos->clave=="33")
+$DatosPorPost = file_get_contents("php://input");
+$objDatos = json_decode($DatosPorPost);
+
+
+//$idUsuario=Usuario::ChequearUsuario($objDatos->email, $objDatos->clave); // devuelve id o flase si esta mal
+
+if($objDatos->email=="33@33" && $objDatos->clave=="33")
 {
 	$idUsuario=1;
 }
+else{
+	$idUsuario=false;	
+}
 
-var_dump("hola mundo");
+
 
 if($idUsuario==1)
 {
 	$token=array(
-
-	"email"=> $objDatos->usuario,
-	"nombre"=>$objDatos->clave,
-	"exp"=>time() - 96000
+	"email"=>$objDatos->email,
+	"clave"=>$objDatos->clave,
+	"exp"=>time() + 96000
 	);
 
 	$token = Firebase\JWT\JWT::encode($token, 'clave');
@@ -33,11 +40,7 @@ if($idUsuario==1)
 	echo json_encode($array);	
 }else
 {
-		$token = Firebase\JWT\JWT::encode($token, 'clave');
 
-	$array['tokenFest2016']=$token;
-
-	echo json_encode($array);	
 }
 
 

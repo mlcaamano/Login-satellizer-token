@@ -5,8 +5,8 @@ var app =angular.module("MyApp", ['ui.router', 'satellizer']);
   
     $authProvider.loginUrl = 'Login/clases/autentificador.php';
     $authProvider.signupUrl = 'Login/clases/autentificador.php';
-    $authProvider.tokenName = "tokenFest2016";
-    $authProvider.tokenPrefix = 'ABM_Persona';
+    $authProvider.tokenName = 'tokenFest2016';
+    $authProvider.tokenPrefix = 'login';
     $authProvider.authHeader = 'Data';
   
 
@@ -27,18 +27,32 @@ var app =angular.module("MyApp", ['ui.router', 'satellizer']);
 
       console.log($scope.email);
 
-      $auth.login({email: $scope.email, clave: $scope.clave})
-      .then(function(){
+      $auth.login({email:$scope.email,clave:$scope.clave})
+      .then(function(respuestaAuth){
+       
+       console.info(respuestaAuth);
+        console.info("datos auth en menu" ,$auth.isAuthenticated(),$auth.getPayload());
+        //$auth.isAuthenticated()
 
-        alert("Joya");
-        console.info("datos auth en menu" , $auth.isAuthenticated(), $auth.getPayload());
 
+        if($auth.isAuthenticated())   
+        {
+          alert("Joya");       
+        }
+        else
+        {
+          alert("fjuira");
+        }
 
         
-      }, function(){
 
-        alert("fjuira");
       })
+      .catch(function(parametro){
+
+        console.info("error", parametro);
+      });
+
+
     }
 
 
